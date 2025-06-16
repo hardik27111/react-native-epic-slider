@@ -6,7 +6,7 @@
 
 A highly customizable and feature-rich slider component for React Native with support for custom thumbs, points, floating labels, and more.
 
-![Demo](./assets/demo.png)
+![React Native Epic Slider Demo](https://github.com/hardik27111/react-native-epic-slider/blob/main/assets/demo.png?raw=true)
 
 ## Features
 
