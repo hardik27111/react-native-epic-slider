@@ -1,97 +1,162 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# React Native Epic Slider
 
-# Getting Started
+![NPM Version](https://img.shields.io/npm/v/react-native-epic-slider)
+![NPM Downloads](https://img.shields.io/npm/dw/react-native-epic-slider)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+A highly customizable and feature-rich slider component for React Native with support for custom thumbs, points, floating labels, and more.
 
-## Step 1: Start Metro
+![Demo](./assets/demo.png)
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Features
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- 🎨 Fully customizable design
+- 👆 Smooth touch interactions
+- 🏷️ Custom floating labels
+- 🎯 Track points support
+- 📏 Custom track and thumb sizes
+- 🎭 Custom thumb component
+- 🔢 Decimal and step value support
+- 🎨 Rich styling options
 
-```sh
+## Installation
+
+```bash
 # Using npm
-npm start
+npm install react-native-epic-slider
 
-# OR using Yarn
-yarn start
+# Using yarn
+yarn add react-native-epic-slider
+
+# Using pnpm
+pnpm add react-native-epic-slider
 ```
 
-## Step 2: Build and run your app
+## Basic Usage
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+```jsx
+import Slider from 'react-native-epic-slider';
 
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+const App = () => {
+  return (
+    <Slider
+      min={0}
+      max={100}
+      value={50}
+      onChange={(value) => console.log('Current value:', value)}
+    />
+  );
+};
 ```
 
-### iOS
+## Advanced Usage
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+```jsx
+import Slider from 'react-native-epic-slider';
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+const App = () => {
+  const CustomThumb = () => (
+    <View style={styles.customThumb}>
+      <Text>📍</Text>
+    </View>
+  );
 
-```sh
-bundle install
+  const CustomFloatingLabel = ({ value }) => (
+    <View style={styles.labelContainer}>
+      <Text style={styles.labelText}>{value}%</Text>
+    </View>
+  );
+
+  return (
+    <Slider
+      min={0}
+      max={100}
+      value={50}
+      step={5}
+      showFloatingLabel={true}
+      FloatingLabel={CustomFloatingLabel}
+      Thumb={CustomThumb}
+      points={[
+        { value: 25, color: '#FF5733' },
+        { value: 50, color: '#33FF57' },
+        { value: 75, color: '#3357FF' },
+      ]}
+      thumbColor="#2196F3"
+      trackColor="#E0E0E0"
+      onChange={(value) => console.log('Current value:', value)}
+    />
+  );
+};
 ```
 
-Then, and every time you update your native dependencies, run:
+## Props
 
-```sh
-bundle exec pod install
-```
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `min` | number | `0` | Minimum value of the slider |
+| `max` | number | `100` | Maximum value of the slider |
+| `value` | number | - | Current value of the slider |
+| `step` | number | `1` | Step value for incrementing/decrementing |
+| `onChange` | function | - | Callback function when value changes |
+| `allowDecimal` | boolean | `false` | Allow decimal values |
+| `showValue` | boolean | `true` | Show current value above slider |
+| `valuePrefix` | string | `''` | Prefix for the displayed value |
+| `valueSuffix` | string | `''` | Suffix for the displayed value |
+| `trackColor` | string | `'#E5E4E2'` | Color of the unfilled track |
+| `thumbColor` | string | `'#22223B'` | Color of the thumb and filled track |
+| `trackHeight` | number | `4` | Height of the slider track |
+| `trackWidth` | number | - | Width of the slider track |
+| `thumbSize` | number | `20` | Size of the thumb |
+| `disableTrackTouch` | boolean | `false` | Disable touch interaction with track |
+| `Thumb` | component | - | Custom thumb component |
+| `points` | array | `[]` | Array of points to display on track |
+| `showFloatingLabel` | boolean | `false` | Show floating label while dragging |
+| `FloatingLabel` | component | - | Custom floating label component |
+| `trackStyles` | style | - | Additional styles for track |
+| `trackProgressStyles` | style | - | Additional styles for progress track |
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### Points Props
 
-```sh
-# Using npm
-npm run ios
+Each point in the `points` array can have the following properties:
 
-# OR using Yarn
-yarn ios
-```
+| Prop | Type | Description |
+|------|------|-------------|
+| `value` | number | Value at which to display the point |
+| `color` | string | Color of the point |
+| `size` | number | Size of the point |
+| `customPoint` | component | Custom component for the point |
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Contributing
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+Feel free to submit issues and enhancement requests!
 
-## Step 3: Modify your app
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-Now that you have successfully run the app, let's make changes!
+## License
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## Author
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+Your Name
+- GitHub: [@hardik27111](https://github.com/hardik27111)
+- npm: [react-native-epic-slider](https://www.npmjs.com/package/react-native-epic-slider)
 
-## Congratulations! :tada:
+## Support
 
-You've successfully run and modified your React Native App. :partying_face:
+If you found this project helpful, please consider giving it a ⭐️!
 
-### Now what?
+## Donation
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+If you find my projects and contributions helpful, consider supporting me. Your support means a lot and helps me continue creating and sharing more cool stuff.
 
-# Troubleshooting
+<a href="https://www.buymeacoffee.com/hardikviradiya" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## Hire
 
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+I'm a skilled React and React Native developer ready to help with your project. Let's create something great together!
+Contact me <a herf='mailto:hardikviradiya27@gmail.com'>hardikviradiya27@gmail.com</a>
