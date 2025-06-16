@@ -101,8 +101,9 @@ const Slider: React.FC<SliderProps> = ({
     return points.map((point, index) => {
       const pointPosition = getPositionFromValue(point.value);
       const pointSize = point.size || 10;
-      const isActive =
-        point.value <= (value !== undefined ? value : currentValue);
+      const isActive = value !== undefined
+        ? point.value <= value
+        : point.value <= (currentValue || 1);
 
       if (point.customPoint) {
         return (
